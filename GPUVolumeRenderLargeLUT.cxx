@@ -27,10 +27,15 @@ int main(int argc, char *argv[])
   // Color table 'hncma-atlas-lut' extracted from
   // nac-hncma-atlas-2015Nov-Slicer4-4Version.mrb on
   // http://www.spl.harvard.edu/publications/item/view/2037
+  const int NumValues = 5023;
   vtkSmartPointer<vtkLookupTable> lut =
     vtkSmartPointer<vtkLookupTable>::New();
-  lut->SetNumberOfTableValues(5023);
-  lut->SetTableRange(0, 5022);
+  lut->SetNumberOfTableValues(NumValues);
+  lut->SetTableRange(0, NumValues-1);
+  for (int i = 0; i < NumValues; i++)
+    {
+    lut->SetTableValue(i, 0.0, 0.0, 0.0, 0.0);
+    }
   lut->SetTableValue(0, 0 / 255.0, 0 / 255.0, 0 / 255.0, 0 / 255.0);
   lut->SetTableValue(2, 250 / 255.0, 250 / 255.0, 225 / 255.0, 255 / 255.0);
   lut->SetTableValue(3, 225 / 255.0, 190 / 255.0, 150 / 255.0, 255 / 255.0);
